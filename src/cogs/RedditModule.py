@@ -1,14 +1,19 @@
 import discord
 from discord.ext import commands
 import random
+import os
 import praw #reddit
 
 def setup(client):
     client.add_cog(RedditModule(client))
 
-reddit = praw.Reddit(client_id="BOXEQu_qfkEtrA",
-                     client_secret="RshwrryrsePBRXfq1H_8RxS7B_Y",
-                     user_agent="python:Botato:v0.7.2 (by u/DeadIy_Potato")
+cl_id = os.getenv("ID")
+secret = os.getenv("SECRET")
+agent = os.getenv("AGENT")
+
+reddit = praw.Reddit(client_id=cl_id,
+                    client_secret=secret,
+                    user_agent=agent)
 
 async def post_hot_from_sub(ctx, sub):
     print(sub)
