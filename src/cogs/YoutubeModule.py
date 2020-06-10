@@ -66,7 +66,7 @@ class YoutubeModule(commands.Cog):
         self.client = client
         print('YoutubeModule loaded')
 
-    @commands.command()
+    @commands.command(description = 'Causes the bot to join the channel you are on', usage = '(no argumens needed)')
     async def join(self, ctx):
         channel = ctx.message.author.voice.channel
         await channel.connect()
@@ -75,7 +75,7 @@ class YoutubeModule(commands.Cog):
     #     if isinstance(error, commands.CommandInvokeError):
     #         await ctx.send('You need to type this command on server where you are on voice channel')
 
-    @commands.command()
+    @commands.command(description = 'Causes the bot to leave the channel you are on', usage = '(no argumens needed)')
     async def leave(self, ctx):
         server = ctx.message.guild
         voice_client = server.voice_client
@@ -85,28 +85,28 @@ class YoutubeModule(commands.Cog):
     #     if isinstance(error, commands.CommandInvokeError):
     #         await ctx.send('You need to type this command on server where you are on voice channel')
 
-    @commands.command()
+    @commands.command(description = 'Stops playing the soundtrack', usage = '(no argumens needed)')
     async def stop(self, ctx):
         vc = await create_voice_client(ctx)
         vc.stop()
         await ctx.send('Sound has been stopped')
 
-    @commands.command()
+    @commands.command(description = 'Pauses the sondtrack being played', usage = '(no argumens needed)')
     async def pause(self, ctx):
         vc = await create_voice_client(ctx)
         vc.pause()
         await ctx.send('Sound has been paused')
 
-    @commands.command()
+    @commands.command(description = 'Resumes the sondtrack being played', usage = '(no argumens needed)')
     async def resume(self, ctx):
         vc = await create_voice_client(ctx)
         vc.resume()
         await ctx.send('Sound has been resumed')
 
-    @commands.command()
-    async def p(self, ctx, *, url):
+    @commands.command(description = 'Plays first search <phrase> result from YouTube ', usage = 'string', brief = '<youtube_phrase>')
+    async def p(self, ctx, *, url:str):
         print(url)
         vc = await create_voice_client(ctx)
         player = await YTDLSource.from_url(url)
         vc.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-        await ctx.send('Now playing: {}'.format(player.title))
+        await ctx.send(f'Now playing: {player.title}')

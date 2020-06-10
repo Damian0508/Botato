@@ -25,34 +25,34 @@ class SoundEffects(commands.Cog):
         self.client = client
         print('SoundEffects loaded')
 
-    @commands.command()
+    @commands.command(description = 'Only cricets sound', usage = '(no argumens needed)')
     async def silence(self, ctx):
         await play_sound(ctx, 'Cricets.mp3')
 
-    @commands.command()
+    @commands.command(description = 'Mayushi tuturu! Steins;Gate - the best anime ;)', usage = '(no argumens needed)')
     async def tuturu(self, ctx):
         await play_sound(ctx, 'Tuturu.mp3')
 
-    @commands.command()
+    @commands.command(description = 'Seinfeld Theme Song', usage = '(no argumens needed)')
     async def gold(self, ctx):
         await play_sound(ctx, 'Seinfield.mp3')
 
-    @commands.command()
+    @commands.command(description = 'Bruh!', usage = '(no argumens needed)')
     async def bruh(self, ctx):
         await play_sound(ctx, 'Bruh.mp3')
 
-    @commands.command()
+    @commands.command(description = 'Chewbacca roar', usage = '(no argumens needed)')
     async def chew(self, ctx):
         await play_sound(ctx, 'Chewbacca.mp3')
 
-    @commands.command()
+    @commands.command(description = 'Loud horn melody', usage = '(no argumens needed)')
     async def horn(self, ctx):
         await play_sound(ctx, 'Horn.mp3')
 
-    @commands.command()
+    @commands.command(description = "Fuck, that's the laser raptor", usage = '(no argumens needed)')
     async def jasny(self, ctx):
         await play_sound(ctx, 'Jasny.mp3')
 
-    @commands.command()
+    @commands.command(description = 'Suprise motherfucker!', usage = '(no argumens needed)')
     async def suprise(self, ctx):
         await play_sound(ctx, 'Surprise.mp3')

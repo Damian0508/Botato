@@ -23,8 +23,8 @@ for filename in os.listdir('./cogs'):
 #     general = client.get_channel(506961371590688779)
 #     await general.send('It is wednesday my dudes')
 
-@client.command()
-async def load(ctx, extension):
+@client.command(description = 'Loads <extension>', usage = 'string', brief = '<extension_name>')
+async def load(ctx, extension:str):
     client.load_extension(f'cogs.{extension}')
     await ctx.send('Extension loaded')
 
@@ -33,7 +33,7 @@ async def load(ctx, extension):
 #     client.unload_extension(f'cogs.{extension}')
 #     await ctx.send('Extension unloaded')
 
-@client.command()
+@client.command(description = 'Reloads <extension>', usage = 'string', brief = '<extension_name>')
 async def reload(ctx, extension):
     client.reload_extension(f'cogs.{extension}')
     await ctx.send('Extension reloaded')
@@ -49,9 +49,11 @@ async def on_ready():
 #     if isinstance(error, commands.CommandNotFound):
 #         await ctx.send('There is no such command, check !help')
 
-@client.command()
+@client.command(description = 'Deletes <x> last messeges on channel. If argument is not given - deletes 100 last messeges\n\
+                You need to have message managment permission to use this command', 
+                usage = 'int', brief = '<x>')
 @commands.has_permissions(manage_messages = True)
-async def clear(ctx, amount = 100):
+async def clear(ctx, amount:int = 100):
     amount += 1
     await ctx.channel.purge(limit = amount)
 @clear.error
@@ -59,7 +61,7 @@ async def clear_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Bad argument type')
 
-@client.command()
+@client.command(description = 'Writes Pong! and bot latency', usage = '(no argumens needed)')
 async def ping(ctx):
     await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
 

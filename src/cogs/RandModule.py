@@ -16,7 +16,11 @@ class RandModule(commands.Cog):
         self.client = client
         print('RandModule loaded')
 
-    @commands.command(aliases = ['roll', 'dice'])
+    @commands.command(aliases = ['roll', 'dice'], brief = '<x> | <x> <y> | <x> <y> <z>', 
+                      description = 'One argument: displays random intager from 1 to <x> (dice roll)\n\
+                      Two arguments: displays table of <x> integers from 1 to <y> and shows thier sum (several dice rolls)\n\
+                      Three arguments: displays table of <x> integers from 1 to <y> and shows thier sum with <z> modifier (several dice rolls with modifier)',
+                      usage = 'int int int')
     async def d(self, ctx, *args: int):
 
         argument_number = len(args)
@@ -36,7 +40,7 @@ class RandModule(commands.Cog):
                     rnd = random.randint(1, args[1])
                     suma += rnd
                     throw_table.append(rnd)
-                await ctx.send('Your throws: {0} total: {1}'.format(throw_table, suma))
+                await ctx.send(f'Your throws: {throw_table} total: {suma}')
             else:
                 await ctx.send('I can only make throws from range 1 to 200')
 
@@ -50,7 +54,7 @@ class RandModule(commands.Cog):
                         suma += rnd
                         throw_table.append(rnd)
                     suma += args[2]
-                    await ctx.send('Your throws: {0} with modificator {1} total: {2}'.format(throw_table, args[2], suma))
+                    await ctx.send(f'Your throws: {throw_table} with modificator {args[2]} total: {suma}')
                 else:
                     await ctx.send('I can only draw from 1 to 1000')
             else:

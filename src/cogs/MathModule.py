@@ -9,7 +9,7 @@ class MathModule(commands.Cog):
         self.client = client
         print('MathModule loaded')
 
-    @commands.command()
+    @commands.command(brief = '<x> <y>', description = 'Adds two numbers together', usage = 'float float')
     async def add(self, ctx, num1: float, num2:float):
         sum = num1 + num2
         await ctx.send(f'The sum of {num1} and {num2} is {sum}')
@@ -17,6 +17,7 @@ class MathModule(commands.Cog):
     # async def add_error(ctx, error):
     #     if isinstance(error, commands.BadArgument):
     #         await ctx.send('Bad argument type')
-    @commands.command()
+
+    @commands.command(description = 'Displays 36 decimal places of the number PI', usage = '(no argumens needed)')
     async def pi(self, ctx):
         await ctx.send('The number π is approximately equal 3,141592 653589 793238 462643 383279 502884')
